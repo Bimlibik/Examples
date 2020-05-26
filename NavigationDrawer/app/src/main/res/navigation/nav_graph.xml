@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/main_fragment">
+
+    <fragment
+        android:id="@+id/main_fragment"
+        android:name="com.foxy.navigationdrawer.MainFragment"
+        android:label="MainContent" >
+        <action
+            android:id="@+id/action_main_fragment_to_about_fragment2"
+            app:destination="@id/about_fragment" />
+        <action
+            android:id="@+id/action_main_fragment_to_settings_fragment"
+            app:destination="@id/settings_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/about_fragment"
+        android:name="com.foxy.navigationdrawer.AboutFragment"
+        android:label="About" />
+    <fragment
+        android:id="@+id/settings_fragment"
+        android:name="com.foxy.navigationdrawer.SettingsFragment"
+        android:label="Settings" />
+</navigation>
