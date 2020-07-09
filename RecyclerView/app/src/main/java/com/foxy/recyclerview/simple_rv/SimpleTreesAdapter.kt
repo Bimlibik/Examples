@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.foxy.recyclerview.R
+import com.foxy.recyclerview.Tree
 
 class SimpleTreesAdapter(
     private val trees: ArrayList<Tree>

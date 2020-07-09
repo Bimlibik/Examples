@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.foxy.recyclerview.R
+import com.foxy.recyclerview.Tree
 
 class SimpleTreesFragment : Fragment() {
 
@@ -39,7 +40,12 @@ class SimpleTreesFragment : Fragment() {
         val trees = mutableListOf<Tree>()
 
         for (i in names.indices) {
-            trees.add(Tree(name = names[i], description = descriptions[i]))
+            trees.add(
+                Tree(
+                    name = names[i],
+                    description = descriptions[i]
+                )
+            )
         }
         return trees as ArrayList<Tree>
     }

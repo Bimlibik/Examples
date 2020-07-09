@@ -1,4 +1,4 @@
-package com.foxy.recyclerview.simple_rv
+package com.foxy.recyclerview
 
 import java.util.*
 
