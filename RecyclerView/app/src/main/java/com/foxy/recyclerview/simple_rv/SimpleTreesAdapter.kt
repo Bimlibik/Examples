@@ -14,7 +14,7 @@ class SimpleTreesAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimpleTreesViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_tree, parent, false)
+            .inflate(R.layout.item_tree_simple, parent, false)
         return SimpleTreesViewHolder(view)
     }
 

@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.*
 import com.foxy.recyclerview.R
 import com.foxy.recyclerview.Tree
-import kotlinx.android.synthetic.main.fragment_trees_list.*
+import kotlinx.android.synthetic.main.fragment_trees_list_simple.*
 
 
 class SimpleTreesFragment : Fragment() {
@@ -18,7 +18,7 @@ class SimpleTreesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_trees_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_trees_list_simple, container, false)
         return view
     }
 
