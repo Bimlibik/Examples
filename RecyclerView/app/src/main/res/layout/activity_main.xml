@@ -4,13 +4,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_simple"
+    <LinearLayout
+        android:id="@+id/buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="Открыть SimpleTreesFragment"
-        android:textAllCaps="false"/>
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_simple"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Открыть SimpleTreesFragment"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_nested"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Открыть NestedTreesFragment"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
