@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.*
 import com.foxy.recyclerview.R
 import com.foxy.recyclerview.Tree
+import kotlinx.android.synthetic.main.fragment_trees_list.*
+
 
 class SimpleTreesFragment : Fragment() {
 
@@ -19,19 +19,35 @@ class SimpleTreesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_trees_list, container, false)
-
-        if(view is RecyclerView) {
-            with(view) {
-                layoutManager = LinearLayoutManager(context)
-                adapter = SimpleTreesAdapter(createData())
-            }
-        }
         return view
     }
 
-    override fun onDetach() {
-        super.onDetach()
-        requireActivity().findViewById<Button>(R.id.btn_simple).visibility = View.VISIBLE
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        PagerSnapHelper().attachToRecyclerView(recycler_view)
+
+        recycler_view.apply {
+            adapter = SimpleTreesAdapter(createData())
+        }
+
+
+
+        onClickListener()
+    }
+
+    private fun onClickListener() {
+        btn_linear.setOnClickListener {
+            recycler_view.apply { layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, true) }
+        }
+        btn_grid.setOnClickListener {
+            recycler_view.apply { layoutManager = GridLayoutManager(context, 3, LinearLayoutManager.HORIZONTAL, false) }
+        }
+        btn_staggered.setOnClickListener {
+            recycler_view.apply {
+                layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+            }
+        }
     }
 
     private fun createData(): ArrayList<Tree> {
