@@ -27,7 +27,7 @@ class MultipleTreesFragment : Fragment() {
         PagerSnapHelper().attachToRecyclerView(recycler_view)
 
         recycler_view.apply {
-            adapter = MultipleAdapter(createData(), createData())
+            adapter = MultipleAdapter(createData())
         }
     }
 
