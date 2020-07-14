@@ -12,7 +12,7 @@ import com.foxy.recyclerview.Tree
 
 class MultipleAdapter(
     private val trees: ArrayList<Tree>
-) : RecyclerView.Adapter<MultipleAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<MultipleAdapter.GenericViewHolder>() {
 
     private val list1 = mutableListOf<Tree>()
     private val list2 = mutableListOf<Tree>()
@@ -21,7 +21,7 @@ class MultipleAdapter(
         sortTrees()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GenericViewHolder {
         val view: View
         return when(viewType) {
             FIRST_LIST_ITEM_VIEW -> {
@@ -37,35 +37,13 @@ class MultipleAdapter(
 
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var pos = position
-        when(holder.itemViewType) {
-            FIRST_LIST_ITEM_VIEW -> {
-                val tree = list1[pos]
-                holder.bindFirstList(tree)
-            }
-            SECOND_LIST_ITEM_VIEW -> {
-                pos = if (list1.size > 0) {
-                    position - list1.size
-                } else {
-                    position
-                }
-                val tree = list2[pos]
-                holder.bindSecondList(tree)
-            }
-        }
-
+    override fun onBindViewHolder(holder: GenericViewHolder, position: Int) {
+        holder.bindView(position)
         holder.itemView.setOnClickListener { updateUi(holder.adapterPosition, holder.itemView.context) }
     }
 
     override fun getItemCount(): Int = trees.size
-//        return when {
-//            list1.size > 0 && list2.size > 0 -> list1.size + list2.size
-//            list1.size == 0 && list2.size > 0 -> list2.size
-//            list1.size > 0 && list2.size == 0 -> list1.size
-//            else -> 0
-//        }
-//    }
+
 
     override fun getItemViewType(position: Int): Int {
         when {
@@ -86,7 +64,7 @@ class MultipleAdapter(
             list1[position].clicked = !list1[position].clicked
         }
         sortTrees()
-        Toast.makeText(context, "$position", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, "$position", Toast.LENGTH_SHORT).show()
     }
 
     private fun sortTrees() {
@@ -103,30 +81,36 @@ class MultipleAdapter(
     }
 
 
-   open class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // view для первого списка
+
+    abstract class GenericViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        abstract fun bindView(position: Int)
+    }
+
+    private inner class FirstListItemViewHolder(itemView: View) : GenericViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.name)
         val description: TextView = itemView.findViewById(R.id.description)
 
-        // view для второго списка
-        val name2: TextView = itemView.findViewById(R.id.name)
-        val description2: TextView = itemView.findViewById(R.id.description)
-
-        fun bindSecondList(tree: Tree) {
-            name2.text = tree.name
-            description2.text = tree.description
+        override fun bindView(position: Int) {
+            name.text = list1[position].name
+            description.text = list1[position].description
         }
-
-        fun bindFirstList(tree: Tree) {
-            name.text = tree.name
-            description.text = tree.description
-        }
-
     }
 
-    private class FirstListItemViewHolder(itemView: View?) : ViewHolder(itemView!!)
+    private inner class SecondListItemViewHolder(itemView: View) : GenericViewHolder(itemView) {
+        val name: TextView = itemView.findViewById(R.id.name)
+        val description: TextView = itemView.findViewById(R.id.description)
 
-    private class SecondListItemViewHolder(itemView: View?) : ViewHolder(itemView!!)
+        override fun bindView(position: Int) {
+            val i = if (list1.size > 0) {
+                position - list1.size
+            } else {
+                position
+            }
+            name.text = list2[i].name
+            description.text = list2[i].description
+        }
+    }
 
 
     companion object {
