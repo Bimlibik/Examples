@@ -34,6 +34,14 @@
             android:text="Открыть MultipleTreesFragment"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/btn_header_and_footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Открыть HeaderAndFooterFragment"
+            android:textAllCaps="false" />
+
     </LinearLayout>
 
     <FrameLayout
