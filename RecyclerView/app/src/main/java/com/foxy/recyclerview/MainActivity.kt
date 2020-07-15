@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.FragmentManager
+import com.foxy.recyclerview.concat_adapter.ConcatFragment
 import com.foxy.recyclerview.header_and_footer.HeaderAndFooterFragment
 import com.foxy.recyclerview.multiple_lists.MultipleTreesFragment
 import com.foxy.recyclerview.nested_rv.NestedTreesFragment
@@ -19,6 +20,16 @@ class MainActivity : AppCompatActivity() {
         btn_nested.setOnClickListener { createNestedTreesFragment(supportFragmentManager) }
         btn_multiple.setOnClickListener { createMultipleTreesFragment(supportFragmentManager) }
         btn_header_and_footer.setOnClickListener { createHeaderAndFooterFragment(supportFragmentManager) }
+        btn_concat.setOnClickListener { createConcatFragment(supportFragmentManager) }
+    }
+
+    private fun createConcatFragment(fm: FragmentManager) {
+        val fragment = ConcatFragment.newInstance()
+        fm.beginTransaction()
+            .add(R.id.fragment_container, fragment)
+            .commit()
+
+        buttons.visibility = View.GONE
     }
 
     private fun createHeaderAndFooterFragment(fm: FragmentManager) {

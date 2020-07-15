@@ -42,6 +42,14 @@
             android:text="Открыть HeaderAndFooterFragment"
             android:textAllCaps="false" />
 
+        <Button
+            android:id="@+id/btn_concat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Открыть ConcatFragment"
+            android:textAllCaps="false" />
+
     </LinearLayout>
 
     <FrameLayout
